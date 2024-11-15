@@ -8,6 +8,31 @@ app.use(express.json());
 // if i use to plain text of body data send of body
 app.use(express.text());
 
+const userRouter = express.Router();
+app.use('/', userRouter);
+
+
+
+userRouter.get('/api/v1/users/create-user', (req: Request, res: Response) => {
+  const user = req.body;
+  console.log(user);
+
+  res.json({
+    success: true, 
+    message: 'User is created sucessfuly',
+    data: user,
+  })
+})
+
+
+
+
+
+
+
+
+
+
 app.get('/', (req:Request, res: Response) => {
   res.send('Hello World this is from!');
 });
@@ -15,7 +40,7 @@ app.get('/', (req:Request, res: Response) => {
 
 app.post('/', (req: Request, res: Response) => {
  console.log(req.body);
- res.send("Hello world");
+ res.send(req.body);
 })
 
 
